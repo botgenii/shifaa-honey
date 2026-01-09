@@ -7,8 +7,9 @@ import { GoogleGenAI, Chat, GenerateContentResponse } from '@google/genai';
 import { useInView } from 'react-intersection-observer';
 
 // --- IMAGE PATHS ---
-const carouselImage1 = 'https://i.ibb.co/hK4D7dD/shifaa-product.jpg';
-const carouselImage2 = 'https://i.ibb.co/pXqW8dF/shifaa-lifestyle.jpg';
+const productImage1 = 'https://i.ibb.co/9vjXpQp/shifaa-premium-product-1.png';
+const productImage2 = 'https://i.ibb.co/M6WJv4r/shifaa-premium-product-2.png';
+const lifestyleImage = 'https://i.ibb.co/qYtP9Mh/shifaa-premium-lifestyle-1.png';
 const bkashLogo = 'https://cdn.sslcommerz.com/public/image/bkash_logo.png';
 const sslLogo = 'https://cdn.sslcommerz.com/public/image/sslcommerz_logo.png';
 
@@ -122,11 +123,6 @@ const translations = {
     benefits: "Benefits",
     howToUse: "How to Use",
     faq: "FAQ",
-    customerCare: "Customer Care",
-    shippingPolicy: "Shipping Policy",
-    returnPolicy: "Return Policy",
-    termsOfService: "Terms of Service",
-    privacyPolicy: "Privacy Policy",
     contactUs: "Contact Us",
     addressLine1: "Lake Circus, Kolabagan",
     addressLine2: "Dhaka 1205, Bangladesh",
@@ -240,11 +236,6 @@ const translations = {
     benefits: "উপকারিতা",
     howToUse: "ব্যবহারবিধি",
     faq: "সাধারণ জিজ্ঞাসা",
-    customerCare: "গ্রাহক সেবা",
-    shippingPolicy: "শিপিং নীতি",
-    returnPolicy: "রিটার্ন নীতি",
-    termsOfService: "সেবার শর্তাবলী",
-    privacyPolicy: "গোপনীয়তা নীতি",
     contactUs: "যোগাযোগ করুন",
     addressLine1: "লেক সার্কাস, কলাবাগান",
     addressLine2: "ঢাকা ১২০৫, বাংলাদেশ",
@@ -255,8 +246,8 @@ const translations = {
 
 // --- CONFIGURATION ---
 const PRODUCT_WEIGHT_KG = 0.5; // 500g per jar including packaging
-const benefitsImage = carouselImage2;
-const carouselImages = [carouselImage1, carouselImage2];
+const benefitsImage = lifestyleImage;
+const carouselImages = [productImage1, productImage2];
 
 const bangladeshDistricts = [
   "Bagerhat", "Bandarban", "Barguna", "Barishal", "Bhola", "Bogra",
@@ -569,7 +560,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, price, l
             <div className="space-y-4">
               <input type="text" placeholder={t.namePlaceholder} value={name} onChange={e => setName(e.target.value)} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-honey-gold focus:border-honey-gold" />
               <div>
-                <input type="tel" placeholder={t.phonePlaceholder} value={phone} onChange={handlePhoneChange} required className={`w-full px-4 py-2 border rounded-md focus:ring-honey-gold focus:border-honey-gold ${phoneError ? 'border-red-500' : 'border-gray-300'}`} />
+                <input type="tel" placeholder={t.phonePlaceholder} value={phone} onChange={handlePhoneChange} required className={`w-full px-4 py-2 border rounded-md focus:ring-honey-gold focus:border-honey-gold ${phoneError ? 'border-red-500' : 'border-gray-300'}`} autoFocus />
                 {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
               </div>
               <select 
@@ -1200,7 +1191,7 @@ export default function App() {
                         </button>
                     </div>
                     <div className="order-1 md:order-2">
-                         <img src={carouselImage1} alt="Shifaa Product Jar" className="w-full h-64 md:h-full object-cover" />
+                         <img src={productImage1} alt="Shifaa Product Jar" className="w-full h-64 md:h-full object-cover" />
                     </div>
                 </div>
             </div>
@@ -1211,7 +1202,7 @@ export default function App() {
       {/* Comprehensive Footer */}
         <footer className="bg-rich-brown text-gray-300 pt-16 pb-8">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 text-center md:text-left">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 text-center md:text-left">
                     {/* Column 1: Brand Info */}
                     <div>
                         <h3 className="text-honey-gold font-bold text-lg mb-4">{t.brandName}</h3>
@@ -1232,17 +1223,7 @@ export default function App() {
                             <li><button onClick={() => handleScrollTo('faq')} className="hover:text-honey-gold transition-colors">{t.faq}</button></li>
                         </ul>
                     </div>
-                    {/* Column 3: Customer Care */}
-                    <div>
-                        <h3 className="font-semibold text-white text-lg mb-4">{t.customerCare}</h3>
-                        <ul className="space-y-3">
-                            <li><a href="#" onClick={handlePolicyClick} className="hover:text-honey-gold transition-colors">{t.shippingPolicy}</a></li>
-                            <li><a href="#" onClick={handlePolicyClick} className="hover:text-honey-gold transition-colors">{t.returnPolicy}</a></li>
-                            <li><a href="#" onClick={handlePolicyClick} className="hover:text-honey-gold transition-colors">{t.termsOfService}</a></li>
-                            <li><a href="#" onClick={handlePolicyClick} className="hover:text-honey-gold transition-colors">{t.privacyPolicy}</a></li>
-                        </ul>
-                    </div>
-                    {/* Column 4: Contact Us */}
+                    {/* Column 3: Contact Us */}
                     <div>
                          <h3 className="font-semibold text-white text-lg mb-4">{t.contactUs}</h3>
                          <ul className="space-y-3">
